@@ -4,6 +4,7 @@ cc.Class({
     properties: {
         direcao: cc.Vec2,
         _movimentacao: cc.Component,
+        _controleAnimacao: cc.Component,
 
     },
 
@@ -13,6 +14,7 @@ cc.Class({
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.teclaPressionada, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.teclaSolta, this);
         this._movimentacao = this.getComponent("Movimentacao");
+        this._controleAnimacao = this.getComponent("ControleDeAnimacao");
     },
     teclaPressionada(event) {
         if (event.keyCode == cc.KEY.a) {
@@ -49,7 +51,7 @@ cc.Class({
     },
 
     update(dt) {
-    this._movimentacao.setDirecao(this.direcao);
-
+        this._movimentacao.setDirecao(this.direcao);
+        this._controleAnimacao.mudaAnimacao(this.direcao);
     },
 });
