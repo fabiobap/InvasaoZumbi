@@ -3,8 +3,10 @@ cc.Class({
 
     properties: {
         direcao: cc.Vec2,
+        tiro: cc.Prefab,
         _movimentacao: cc.Component,
         _controleAnimacao: cc.Component,
+        _canvas: cc.Canvas,
 
     },
 
@@ -15,6 +17,8 @@ cc.Class({
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.teclaSolta, this);
         this._movimentacao = this.getComponent("Movimentacao");
         this._controleAnimacao = this.getComponent("ControleDeAnimacao");
+        this._canvas = cc.find("Canvas");
+        this._canvas.on("mousedown", this.atirar, this)
     },
     teclaPressionada(event) {
         if (event.keyCode == cc.KEY.a) {
@@ -46,6 +50,15 @@ cc.Class({
         }
     },
 
+    atirar(event) {
+        let posicaoMouse = event.getLocation();
+        posicaoMouse = new cc.Vec2(posicaoMouse.x, posicaoMouse.y);
+        let direcao = posicaoMouse.sub(this.node.position);
+        let disparo = cc.instantiate(this.tiro);
+        disparo.parent = this.node.parent;
+        disparo.position = this.node.position;
+        disparo.getComponent("Movimentacao").setDirecao(direcao);
+    },
     start() {
 
     },
