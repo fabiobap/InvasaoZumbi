@@ -15,12 +15,12 @@ cc.Class({
 
     },
 
+    setDirecao(direcao){
+        this._direcao = direcao.normalize();
+    },
     update(dt) {
         let deslocamento = this._direcao.mul(dt * this.velocidade);
         this.node.position = this.node.position.add(deslocamento);
     },
     
-    setDirecao(direcao){
-        this._direcao = direcao.normalize();
-    },
 });

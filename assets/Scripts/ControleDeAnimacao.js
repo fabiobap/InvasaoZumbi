@@ -12,26 +12,23 @@ cc.Class({
         this._animacao = this.getComponent(cc.Animation);
         this._animacao.play("Parado");
     },
-    mudaAnimacao(direcao) {
-        let proximaAnimacao = "Andar";
+    mudaAnimacao(direcao, estado) {
+        let proximaAnimacao = estado;
 
-        if (direcao.x > 0) {
+        if (direcao.x > 15) {
             proximaAnimacao += "Direita";
-        } else if (direcao.x < 0) {
+        } else if (direcao.x < -5) {
             proximaAnimacao += "Esquerda";
         }
 
-        if (direcao.y > 0) {
+        if (direcao.y > 30) {
             proximaAnimacao += "Cima";
-        } else if (direcao.y < 0) {
+        } else if (direcao.y < -10) {
             proximaAnimacao += "Baixo";
-        }
-
-        if (proximaAnimacao == "Andar") {
-            proximaAnimacao = "Parado";
         }
         if (!this._animacao.getAnimationState(proximaAnimacao).isPlaying)
             this._animacao.play(proximaAnimacao);
+        console.log(proximaAnimacao);
     },
 
     start() {
