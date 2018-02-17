@@ -2,7 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        direcao: cc.Vec2,
+        _direcao: cc.Vec2,
         tiro: cc.Prefab,
         _movimentacao: cc.Component,
         _controleAnimacao: cc.Component,
@@ -25,37 +25,37 @@ cc.Class({
     },
     teclaPressionada(event) {
         if (event.keyCode == cc.KEY.a) {
-            this.direcao.x = -1;
+            this._direcao.x = -1;
         }
         if (event.keyCode == cc.KEY.d) {
-            this.direcao.x = 1;
+            this._direcao.x = 1;
         }
         if (event.keyCode == cc.KEY.w) {
-            this.direcao.y = 1;
+            this._direcao.y = 1;
         }
         if (event.keyCode == cc.KEY.s) {
-            this.direcao.y = -1;
+            this._direcao.y = -1;
         }
 
     },
     teclaSolta(event) {
         if (event.keyCode == cc.KEY.a) {
-            this.direcao.x = 0;
+            this._direcao.x = 0;
         }
         if (event.keyCode == cc.KEY.d) {
-            this.direcao.x = 0;
+            this._direcao.x = 0;
         }
         if (event.keyCode == cc.KEY.w) {
-            this.direcao.y = 0;
+            this._direcao.y = 0;
         }
         if (event.keyCode == cc.KEY.s) {
-            this.direcao.y = 0;
+            this._direcao.y = 0;
         }
     },
     mudarDirecaoDaAnimacao(event){
         let direcao = this.calcularDirecaoMouse(event);
         let estado;
-        if(this.direcao.mag() == 0){
+        if(this._direcao.mag() == 0){
             estado = "Parado";
         }else{
             estado = "Andar";
@@ -82,6 +82,7 @@ cc.Class({
     },
 
     update(dt) {
-        this._movimentacao.setDirecao(this.direcao);
+        this._movimentacao.setDirecao(this._direcao);
+        this._movimentacao.andarPraFrente();
     },
 });

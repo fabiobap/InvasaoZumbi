@@ -1,0 +1,230 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "",
+    "_objFlags": 0,
+    "_rawFiles": null,
+    "data": {
+      "__id__": 1
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Zumbi",
+    "_objFlags": 0,
+    "_parent": null,
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 2
+      },
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
+      },
+      {
+        "__id__": 5
+      },
+      {
+        "__id__": 6
+      },
+      {
+        "__id__": 7
+      },
+      {
+        "__id__": 8
+      }
+    ],
+    "_prefab": {
+      "__id__": 9
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 62,
+      "height": 67
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 185,
+      "y": 279
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 2
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_spriteFrame": {
+      "__uuid__": "f142f054-e531-4fde-b095-260237885dc2"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
+  },
+  {
+    "__type__": "f7835VUVnRMUZUrvoCwLm7H",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "alvo": null,
+    "_movimentacao": null,
+    "_controleAnimacao": null,
+    "_gameOver": null,
+    "distanciaAtaque": "50"
+  },
+  {
+    "__type__": "42037+05hVIUL6dB3DF1ugx",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_direcao": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "velocidade": "70",
+    "_deltaTime": 0
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_defaultClip": {
+      "__uuid__": "2c51d38b-5cb0-47ea-ad32-13ea1bd487c5"
+    },
+    "_clips": [
+      {
+        "__uuid__": "2c51d38b-5cb0-47ea-ad32-13ea1bd487c5"
+      },
+      {
+        "__uuid__": "4a1885d6-8245-48a1-9b0f-a8d48c840e06"
+      },
+      {
+        "__uuid__": "1d05e02a-1f12-4084-8879-d00b37904c48"
+      },
+      {
+        "__uuid__": "92a05ac0-38d6-4b95-8c79-eb0e73876af8"
+      },
+      {
+        "__uuid__": "8fc1426d-cf70-464e-b556-1630f850d895"
+      },
+      {
+        "__uuid__": "0e54af87-3a43-4138-846e-14706ce3b48c"
+      },
+      {
+        "__uuid__": "66af02df-ef7f-438d-9dad-e7a96d00911a"
+      },
+      {
+        "__uuid__": "afb016b6-d667-4a1f-80fc-3a65785978a8"
+      },
+      {
+        "__uuid__": "959d8c1f-4298-4c03-9f06-2146de2b1d09"
+      }
+    ],
+    "playOnLoad": true
+  },
+  {
+    "__type__": "b86feuclbpCQZsHfmakTW6i",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_animacao": null
+  },
+  {
+    "__type__": "cc.BoxCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 2
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 55,
+      "height": 49
+    }
+  },
+  {
+    "__type__": "20f4cddLCZKdKg4ihGwXx9V",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_movimentacao": null
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "40d28237-3e74-4d14-8d27-a5ea811ea4ae"
+    },
+    "fileId": "0eqW5k42pOVrmUCNh1HB1L",
+    "sync": false
+  }
+]

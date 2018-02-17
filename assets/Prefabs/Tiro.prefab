@@ -59,15 +59,15 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 543,
-      "y": 102
+      "x": 128,
+      "y": 285
     },
     "_skewX": 0,
     "_skewY": 0,
     "_localZOrder": 0,
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
-    "groupIndex": 0
+    "groupIndex": 3
   },
   {
     "__type__": "cc.Sprite",
@@ -108,7 +108,7 @@
       "x": 0,
       "y": 0
     },
-    "velocidade": "300"
+    "velocidade": "500"
   },
   {
     "__type__": "cc.CircleCollider",
