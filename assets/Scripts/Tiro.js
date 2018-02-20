@@ -13,10 +13,8 @@ cc.Class({
         this._movimentacao = this.getComponent("Movimentacao");
     },
 
-    onCollisionEnter(outro){
-        if(outro.node.group == "inimigo"){
-        outro.node.destroy();
-        }
+    onCollisionEnter(outro) {
+            outro.node.emit("SofrerDano");
         this.node.destroy();
     },
     start() {

@@ -7,6 +7,7 @@ cc.Class({
         _movimentacao: cc.Component,
         _controleAnimacao: cc.Component,
         _canvas: cc.Canvas,
+        _camera: cc.Node,
         vivo: true,
 
     },
@@ -19,6 +20,7 @@ cc.Class({
         this._movimentacao = this.getComponent("Movimentacao");
         this._controleAnimacao = this.getComponent("ControleDeAnimacao");
         this._canvas = cc.find("Canvas");
+        this._camera = cc.find("Camera");
         this._canvas.on("mousedown", this.atirar, this)
         this._canvas.on("mousemove", this.mudarDirecaoDaAnimacao, this)
         this.vivo = true;
@@ -66,7 +68,9 @@ cc.Class({
     calcularDirecaoMouse(event){
         let posicaoMouse = event.getLocation();
         posicaoMouse = new cc.Vec2(posicaoMouse.x, posicaoMouse.y);
-        let direcao = posicaoMouse.sub(this.node.position);
+        posicaoMouse = this._canvas.convertToNodeSpaceAR(posicaoMouse);
+        let posicaoJogadora = this._camera.convertToNodeSpaceAR(this.node.position);
+        let direcao = posicaoMouse.sub(posicaoJogadora);
         return direcao;
         
     },
