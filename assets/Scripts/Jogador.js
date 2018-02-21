@@ -2,12 +2,14 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        _vidaAtual: cc.Float,
         _direcao: cc.Vec2,
-        tiro: cc.Prefab,
         _movimentacao: cc.Component,
         _controleAnimacao: cc.Component,
         _canvas: cc.Canvas,
         _camera: cc.Node,
+        vidaMaxima: cc.Float,
+        tiro: cc.Prefab,
         vivo: true,
 
     },
@@ -24,6 +26,20 @@ cc.Class({
         this._canvas.on("mousedown", this.atirar, this)
         this._canvas.on("mousemove", this.mudarDirecaoDaAnimacao, this)
         this.vivo = true;
+        this.node.on("SofreDano", this.sofrerDano, this);
+        this._vidaAtual = this.vidaMaxima;
+    },
+    sofrerDano() {
+        this._vidaAtual -=1;
+        
+        let eventoPerdeVida = new cc.Event.EventCustom("JogadoraPerdeuVida", true);
+        eventoPerdeVida.setUserData({vidaAtual: this._vidaAtual, vidaMaxima: this.vidaMaxima});
+        
+        this.node.dispatchEvent(eventoPerdeVida);
+        
+        if(this._vidaAtual < 0){
+            this.vivo = false;
+        }
     },
     teclaPressionada(event) {
         if (event.keyCode == cc.KEY.a) {
@@ -54,25 +70,25 @@ cc.Class({
             this._direcao.y = 0;
         }
     },
-    mudarDirecaoDaAnimacao(event){
+    mudarDirecaoDaAnimacao(event) {
         let direcao = this.calcularDirecaoMouse(event);
         let estado;
-        if(this._direcao.mag() == 0){
+        if (this._direcao.mag() == 0) {
             estado = "Parado";
-        }else{
+        } else {
             estado = "Andar";
         }
         this._controleAnimacao.mudaAnimacao(direcao, estado);
-        
+
     },
-    calcularDirecaoMouse(event){
+    calcularDirecaoMouse(event) {
         let posicaoMouse = event.getLocation();
         posicaoMouse = new cc.Vec2(posicaoMouse.x, posicaoMouse.y);
         posicaoMouse = this._canvas.convertToNodeSpaceAR(posicaoMouse);
         let posicaoJogadora = this._camera.convertToNodeSpaceAR(this.node.position);
         let direcao = posicaoMouse.sub(posicaoJogadora);
         return direcao;
-        
+
     },
     atirar(event) {
         let direcao = this.calcularDirecaoMouse(event);

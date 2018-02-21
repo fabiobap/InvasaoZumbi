@@ -30,7 +30,7 @@ cc.Class({
         this._movimentacao.setDirecao(direcao);
         this._movimentacao.andarPraFrente();
         if (distancia < this.distanciaAtaque) {
-            this.alvo.getComponent("Jogador").vivo = false;
+            this.alvo.emit("SofreDano");
         }
     },
     morrer(){
