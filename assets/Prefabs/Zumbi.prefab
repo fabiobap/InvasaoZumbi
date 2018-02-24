@@ -68,8 +68,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 185,
-      "y": 279
+      "x": 197,
+      "y": 409
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -113,6 +113,7 @@
     },
     "_enabled": true,
     "alvo": null,
+    "dano": "20",
     "_movimentacao": null,
     "_controleAnimacao": null,
     "_gameOver": null,

@@ -1,3 +1,4 @@
+let Teclado = require("Teclado");
 cc.Class({
     extends: cc.Component,
 
@@ -8,6 +9,7 @@ cc.Class({
         _controleAnimacao: cc.Component,
         _canvas: cc.Canvas,
         _camera: cc.Node,
+        _audioTiro: cc.AudioSource,
         vidaMaxima: cc.Float,
         tiro: cc.Prefab,
         vivo: true,
@@ -17,8 +19,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.teclaPressionada, this);
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.teclaSolta, this);
+
         this._movimentacao = this.getComponent("Movimentacao");
         this._controleAnimacao = this.getComponent("ControleDeAnimacao");
         this._canvas = cc.find("Canvas");
@@ -28,48 +29,49 @@ cc.Class({
         this.vivo = true;
         this.node.on("SofreDano", this.sofrerDano, this);
         this._vidaAtual = this.vidaMaxima;
+        this._audioTiro = this.getComponent(cc.AudioSource);
     },
-    sofrerDano() {
-        this._vidaAtual -=1;
-        
-        let eventoPerdeVida = new cc.Event.EventCustom("JogadoraPerdeuVida", true);
-        eventoPerdeVida.setUserData({vidaAtual: this._vidaAtual, vidaMaxima: this.vidaMaxima});
-        
-        this.node.dispatchEvent(eventoPerdeVida);
-        
-        if(this._vidaAtual < 0){
-            this.vivo = false;
-        }
-    },
-    teclaPressionada(event) {
-        if (event.keyCode == cc.KEY.a) {
-            this._direcao.x = -1;
-        }
-        if (event.keyCode == cc.KEY.d) {
-            this._direcao.x = 1;
-        }
-        if (event.keyCode == cc.KEY.w) {
-            this._direcao.y = 1;
-        }
-        if (event.keyCode == cc.KEY.s) {
-            this._direcao.y = -1;
+
+    update(dt) {
+        this._movimentacao.setDirecao(this._direcao);
+        this._movimentacao.andarPraFrente();
+
+        this._direcao = cc.Vec2.ZERO;
+
+        if (Teclado.estaPressionada(cc.KEY.a)) {
+            this._direcao.x -= 1;
         }
 
-    },
-    teclaSolta(event) {
-        if (event.keyCode == cc.KEY.a) {
-            this._direcao.x = 0;
+        if (Teclado.estaPressionada(cc.KEY.d)) {
+            this._direcao.x += 1;
+
         }
-        if (event.keyCode == cc.KEY.d) {
-            this._direcao.x = 0;
+        if (Teclado.estaPressionada(cc.KEY.s)) {
+            this._direcao.y -= 1;
         }
-        if (event.keyCode == cc.KEY.w) {
-            this._direcao.y = 0;
-        }
-        if (event.keyCode == cc.KEY.s) {
-            this._direcao.y = 0;
+
+        if (Teclado.estaPressionada(cc.KEY.w)) {
+            this._direcao.y += 1;
+
         }
     },
+    sofrerDano(evento) {
+        this._vidaAtual -= evento.detail.dano;
+
+        let eventoPerdeVida = new cc.Event.EventCustom("JogadoraPerdeuVida", true);
+        eventoPerdeVida.setUserData({
+            vidaAtual: this._vidaAtual,
+            vidaMaxima: this.vidaMaxima
+        });
+
+        this.node.dispatchEvent(eventoPerdeVida);
+
+        if (this._vidaAtual < 0) {
+            let jogoAcabou = new cc.Event.EventCustom("JogoAcabou", true);
+            this.node.dispatchEvent(jogoAcabou);
+        }
+    },
+
     mudarDirecaoDaAnimacao(event) {
         let direcao = this.calcularDirecaoMouse(event);
         let estado;
@@ -93,16 +95,8 @@ cc.Class({
     atirar(event) {
         let direcao = this.calcularDirecaoMouse(event);
         let disparo = cc.instantiate(this.tiro);
-        disparo.parent = this.node.parent;
-        disparo.position = this.node.position;
-        disparo.getComponent("Movimentacao").setDirecao(direcao);
-    },
-    start() {
+        disparo.getComponent("Tiro").inicializa(this.node.parent, this.node.position, direcao);
 
-    },
-
-    update(dt) {
-        this._movimentacao.setDirecao(this._direcao);
-        this._movimentacao.andarPraFrente();
+        this._audioTiro.play();
     },
 });

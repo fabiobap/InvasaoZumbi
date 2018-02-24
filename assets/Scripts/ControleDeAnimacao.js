@@ -28,7 +28,6 @@ cc.Class({
         }
         if (!this._animacao.getAnimationState(proximaAnimacao).isPlaying)
             this._animacao.play(proximaAnimacao);
-        console.log(proximaAnimacao);
     },
 
     start() {

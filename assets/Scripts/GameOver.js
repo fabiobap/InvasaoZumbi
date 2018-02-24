@@ -3,7 +3,7 @@ cc.Class({
 
     properties: {
         _gameOver: cc.Node,
-        _jogador: cc.Component,
+        _possoReiniciar: false,
 
     },
 
@@ -11,28 +11,25 @@ cc.Class({
 
     onLoad() {
         cc.director.resume();
-        let jogadora = cc.find("Personagens/Personagem");
-        this._jogador = jogadora.getComponent("Jogador");
+
         this._gameOver = cc.find("Interface/GameOver");
+
         let canvas = cc.find("Canvas");
         canvas.on("mousedown", this.jogarNovamente, this);
+
+        cc.director.getScene().on("JogoAcabou", this.jogoAcabou, this);
+    },
+
+    jogoAcabou() {
+        this._possoReiniciar = true;
+        cc.director.pause();
+        this._gameOver.active = true;
+
     },
 
     jogarNovamente() {
-        if (!this._jogador.vivo) {
+        if (this._possoReiniciar) {
             cc.director.loadScene("Jogo");
-        }
-    },
-    
-    start() {
-
-    },
-
-    update(dt) {
-        if (!this._jogador.vivo) {
-
-            cc.director.pause();
-            this._gameOver.active = true;
         }
     },
 });

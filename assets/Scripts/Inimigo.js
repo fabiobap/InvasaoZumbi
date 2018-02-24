@@ -3,6 +3,7 @@ cc.Class({
 
     properties: {
         alvo: cc.Node,
+        dano: cc.Float,
         _movimentacao: cc.Component,
         _controleAnimacao: cc.Component,
         _gameOver: cc.Node,
@@ -19,10 +20,6 @@ cc.Class({
         this.node.on("SofrerDano", this.morrer, this);
     },
 
-    start() {
-
-    },
-
     update(dt) {
         let direcao = this.alvo.position.sub(this.node.position);
         let distancia = direcao.mag();
@@ -30,7 +27,7 @@ cc.Class({
         this._movimentacao.setDirecao(direcao);
         this._movimentacao.andarPraFrente();
         if (distancia < this.distanciaAtaque) {
-            this.alvo.emit("SofreDano");
+            this.alvo.emit("SofreDano",{dano: this.dano});
         }
     },
     morrer(){

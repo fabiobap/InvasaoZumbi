@@ -13,15 +13,19 @@ cc.Class({
         this._movimentacao = this.getComponent("Movimentacao");
     },
 
-    onCollisionEnter(outro) {
-            outro.node.emit("SofrerDano");
-        this.node.destroy();
-    },
-    start() {
-
-    },
 
     update(dt) {
         this._movimentacao.andarPraFrente();
+    },
+
+    onCollisionEnter(outro) {
+        outro.node.emit("SofrerDano");
+        this.node.destroy();
+    },
+
+    inicializa(pai, posicao, direcao) {
+        this.node.parent = pai;
+        this.node.position = posicao;
+        this._movimentacao.setDirecao(direcao);
     },
 });
