@@ -832,8 +832,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 405,
-      "y": 368
+      "x": 537,
+      "y": 322
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1091,8 +1091,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 836,
-      "y": 558
+      "x": 844,
+      "y": 512
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1112,7 +1112,9 @@
     "tempoParaGerar": "2",
     "inimigoPrefab": {
       "__uuid__": "40d28237-3e74-4d14-8d27-a5ea811ea4ae"
-    }
+    },
+    "raio": "100",
+    "_distanciaMinima": "Float"
   },
   {
     "__type__": "cc.Node",
@@ -1156,8 +1158,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 757,
-      "y": -21
+      "x": 793,
+      "y": 71
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1177,7 +1179,9 @@
     "tempoParaGerar": "1",
     "inimigoPrefab": {
       "__uuid__": "40d28237-3e74-4d14-8d27-a5ea811ea4ae"
-    }
+    },
+    "raio": "80",
+    "_distanciaMinima": "Float"
   },
   {
     "__type__": "cc.Node",
@@ -1221,8 +1225,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -78,
-      "y": 449
+      "x": -135,
+      "y": 354
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1242,7 +1246,9 @@
     "tempoParaGerar": "3",
     "inimigoPrefab": {
       "__uuid__": "40d28237-3e74-4d14-8d27-a5ea811ea4ae"
-    }
+    },
+    "raio": "250",
+    "_distanciaMinima": "Float"
   },
   {
     "__type__": "cc.Node",
@@ -1355,8 +1361,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 503,
-      "y": 223
+      "x": 490,
+      "y": 274
     },
     "_skewX": 0,
     "_skewY": 0,

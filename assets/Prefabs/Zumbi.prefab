@@ -68,8 +68,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 197,
-      "y": 409
+      "x": 106,
+      "y": 343
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -113,11 +113,13 @@
     },
     "_enabled": true,
     "alvo": null,
-    "dano": "20",
+    "dano": "25",
+    "distanciaAtaque": "50",
+    "tempoAtaque": "2",
     "_movimentacao": null,
     "_controleAnimacao": null,
     "_gameOver": null,
-    "distanciaAtaque": "50"
+    "_cronometroAtaque": "Float"
   },
   {
     "__type__": "42037+05hVIUL6dB3DF1ugx",
