@@ -17,6 +17,7 @@ cc.Class({
         _cronometroAtaque: cc.Float,
         _tempoRestanteParaVagar: cc.Float,
         _vidaAtual: cc.Float,
+        _atacando: cc.Boolean,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -27,38 +28,45 @@ cc.Class({
         this._gameOver = cc.find("GameOver");
         this.alvo = cc.find("Personagens/Personagem");
         this.node.on("SofrerDano", this.sofrerDano, this);
-        this._cronometroAtaque = this.tempoAtaque;
         this._tempoRestanteParaVagar = this.tempoVagar;
         this.direcaoVagar = cc.Vec2.UP;
         this._vidaAtual = this.vidaMaxima;
+        this._atacando = false;
     },
 
     update(dt) {
-        this._cronometroAtaque -= dt;
-        this._tempoRestanteParaVagar -= dt;
 
-        let direcaoAlvo = this.alvo.position.sub(this.node.position);
-        let distancia = direcaoAlvo.mag();
+        if (!this.atacando) {
+            this._cronometroAtaque -= dt;
+            this._tempoRestanteParaVagar -= dt;
 
-        if (distancia < this.distanciaAtaque && this._cronometroAtaque < 0) {
-            this.atacar();
-        } else if (distancia < this.distanciaPerseguir) {
-            this.andar(direcaoAlvo);
-        } else {
-            this.vagar();
+            let direcaoAlvo = this.alvo.position.sub(this.node.position);
+            let distancia = direcaoAlvo.mag();
+
+            if (distancia < this.distanciaAtaque) {
+                this.iniciarAtaque(direcaoAlvo);
+            } else if (distancia < this.distanciaPerseguir) {
+                this.andar(direcaoAlvo);
+            } else {
+                this.vagar();
+            }
         }
-    },
-    atacar() {
-        this.alvo.emit("SofreDano", {
-            dano: this.dano
-        });
-        this._cronometroAtaque = this.tempoAtaque;
-
     },
     andar(direcao) {
         this._controleAnimacao.mudaAnimacao(direcao, "Andar");
         this._movimentacao.setDirecao(direcao);
         this._movimentacao.andarPraFrente();
+    },
+    iniciarAtaque(direcao) {
+        this._controleAnimacao.mudaAnimacao(direcao, "Atacar");
+        this._atacando = true;
+
+    },
+    atacar() {
+        this.alvo.emit("SofreDano", {
+            dano: this.dano
+        });
+        this._atacando = false;
     },
     vagar() {
         if (this._tempoRestanteParaVagar < 0) {
@@ -69,7 +77,10 @@ cc.Class({
     },
     sofrerDano(evento) {
         this._vidaAtual -= evento.detail.dano;
-        this.node.emit("atualizaVida", {vidaAtual: this._vidaAtual, vidaMaxima: this.vidaMaxima});
+        this.node.emit("atualizaVida", {
+            vidaAtual: this._vidaAtual,
+            vidaMaxima: this.vidaMaxima
+        });
         if (this._vidaAtual < 0) {
             this.morrer();
         }

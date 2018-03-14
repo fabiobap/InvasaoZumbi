@@ -3,11 +3,7 @@
   "_name": "ParadoEsquerdaBaixo",
   "_objFlags": 0,
   "_rawFiles": null,
-<<<<<<< HEAD
   "_duration": 1.625,
-=======
-  "_duration": 1.33,
->>>>>>> 9c785c724228516f6289bbe539873125a3ac38de
   "sample": 24,
   "speed": 1,
   "wrapMode": 2,
@@ -259,8 +255,8 @@
             {
               "frame": 0,
               "value": [
-                -34.2,
-                9.4
+                -48,
+                15
               ]
             }
           ]

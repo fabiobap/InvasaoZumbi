@@ -136,7 +136,7 @@
     },
     "_enabled": true,
     "_movimentacao": null,
-    "dano": "5"
+    "dano": "10"
   },
   {
     "__type__": "cc.PrefabInfo",

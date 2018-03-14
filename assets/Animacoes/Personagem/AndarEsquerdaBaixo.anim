@@ -3,11 +3,7 @@
   "_name": "AndarEsquerdaBaixo",
   "_objFlags": 0,
   "_rawFiles": null,
-<<<<<<< HEAD
   "_duration": 1,
-=======
-  "_duration": 1.33,
->>>>>>> 9c785c724228516f6289bbe539873125a3ac38de
   "sample": 24,
   "speed": 1,
   "wrapMode": 2,
@@ -169,8 +165,8 @@
             {
               "frame": 0,
               "value": [
-                -35.2,
-                8.7
+                -49,
+                24
               ]
             }
           ]
