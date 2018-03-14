@@ -10,6 +10,7 @@ cc.Class({
         _canvas: cc.Canvas,
         _camera: cc.Node,
         _audioTiro: cc.AudioSource,
+        _posicaoArma: cc.Node,
         vidaMaxima: cc.Float,
         tiro: cc.Prefab,
         vivo: true,
@@ -30,6 +31,7 @@ cc.Class({
         this.node.on("SofreDano", this.sofrerDano, this);
         this._vidaAtual = this.vidaMaxima;
         this._audioTiro = this.getComponent(cc.AudioSource);
+        this._posicaoArma = this.node.children[0];
     },
 
     update(dt) {
@@ -95,7 +97,9 @@ cc.Class({
     atirar(event) {
         let direcao = this.calcularDirecaoMouse(event);
         let disparo = cc.instantiate(this.tiro);
-        disparo.getComponent("Tiro").inicializa(this.node.parent, this.node.position, direcao);
+        disparo.getComponent("Tiro").inicializa(this.node.parent,
+                                                this._posicaoArma.position.add(this.node.position),
+                                                direcao);
 
         this._audioTiro.play();
     },

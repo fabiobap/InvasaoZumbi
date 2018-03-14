@@ -3,6 +3,7 @@ cc.Class({
 
     properties: {
         _movimentacao: cc.Component,
+        dano: cc.Float,
 
     },
 
@@ -19,7 +20,7 @@ cc.Class({
     },
 
     onCollisionEnter(outro) {
-        outro.node.emit("SofrerDano");
+        outro.node.emit("SofrerDano", {dano:this.dano});
         this.node.destroy();
     },
 

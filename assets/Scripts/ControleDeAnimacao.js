@@ -15,15 +15,15 @@ cc.Class({
     mudaAnimacao(direcao, estado) {
         let proximaAnimacao = estado;
 
-        if (direcao.x > 15) {
+        if (direcao.x > 0) {
             proximaAnimacao += "Direita";
-        } else if (direcao.x < -5) {
+        } else if (direcao.x < 0) {
             proximaAnimacao += "Esquerda";
         }
 
-        if (direcao.y > 30) {
+        if (direcao.y > 0) {
             proximaAnimacao += "Cima";
-        } else if (direcao.y < -10) {
+        } else if (direcao.y < 0) {
             proximaAnimacao += "Baixo";
         }
         if (!this._animacao.getAnimationState(proximaAnimacao).isPlaying)

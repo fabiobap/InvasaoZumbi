@@ -108,7 +108,8 @@
       "x": 0,
       "y": 0
     },
-    "velocidade": "500"
+    "velocidade": "500",
+    "_deltaTime": 0
   },
   {
     "__type__": "cc.CircleCollider",
@@ -133,7 +134,9 @@
     "node": {
       "__id__": 1
     },
-    "_enabled": true
+    "_enabled": true,
+    "_movimentacao": null,
+    "dano": "5"
   },
   {
     "__type__": "cc.PrefabInfo",
