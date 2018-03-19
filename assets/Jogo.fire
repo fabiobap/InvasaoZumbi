@@ -1103,7 +1103,10 @@
       "__id__": 23
     },
     "_enabled": true,
-    "_animacao": null
+    "anguloDiagonal": "30",
+    "_animacao": null,
+    "_senoMinimo": "Float",
+    "_cossenoMinimo": "Float"
   },
   {
     "__type__": "cc.BoxCollider",
